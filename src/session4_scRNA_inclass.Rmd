@@ -95,10 +95,12 @@ main_umap
 #proof of concept for function below
 #Tcells$Tage == tage[1]
 
+highlight_cols = c("#E69F00", "#AD7700", "#009E73", "#007756", "#56B4E9", "#1C91D4")
+
 #write a Tage highlighter function
 highlight_cluster <- function(selected_tage, selected_color){
   dittoDimPlot(Tcells, "Tage", size = 1, reduction.use = "umap",
-               cells.use = Tcells$Tage == selected_tage, colors = selected_color,
+               cells.use = Tcells$Tage == selected_tage, color.panel = selected_color,
                legend.show = FALSE, ylab = NULL, xlab = NULL, main = NULL,
                show.axes.numbers = FALSE)
 }
@@ -116,8 +118,9 @@ plot_list <- c()
 #convert this to a loop
 #create object with all highlight plots
 for (x in 1:6){
+  
   single_plot <- highlight_cluster(selected_tage = tage[x],
-                                   selected_color = cols[x])
+                                   selected_color = highlight_cols[x])
   plot_list[[x]] <- single_plot
 }
 
